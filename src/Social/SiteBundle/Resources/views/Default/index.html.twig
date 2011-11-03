@@ -1,0 +1,38 @@
+{% extends 'SocialSiteBundle::layout.html.twig' %}
+
+
+{% block content %}
+
+      {{ facebook_initialize({'xfbml': true, 'status': true,'fbAsyncInit': 'onFbInit();'}) }}
+
+        <script>
+          function goLogIn(){
+              window.location = "{{ path('_security_check') }}";
+          }
+
+          function onFbInit() {
+             if (typeof(FB) != 'undefined' && FB != null ) {
+                  FB.Event.subscribe('auth.login', function(response) {
+                       setTimeout(goLogIn,500);
+                  });
+
+                  FB.Event.subscribe('auth.logout', function(response) {
+                       window.location = "{{ path('_security_logout') }}";
+                  });
+             }
+          }
+        </script>
+
+    <h1>Welcome!</h1>
+
+    <p>Click to login.</p>
+
+      {{ facebook_login_button({'autologoutlink': true}) }}
+
+    <p>Click to login with Twitter</p>
+
+      <span id="twitter_connect"></span>
+      {# twitter_anywhere_setConfig('callbackURL', 'http://symfony2social.com/login_check') #}
+      {{ twitter_anywhere_queue('T("#twitter_connect").connectButton()') }}
+
+{% endblock %}

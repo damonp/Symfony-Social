@@ -1,0 +1,47 @@
+<?php
+
+namespace Social\SiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="config_local")
+ */
+class Config 
+{
+    /** 
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /** 
+     * @var string
+     * @ORM\Column(name="conf_key", type="string", length=50)
+     */
+    protected $key;
+
+    /** 
+     * @var string
+     * @ORM\Column(name="conf_val", type="string", length=255)
+     */
+    protected $val;
+
+    /** 
+     * @var string
+     * @ORM\Column(name="conf_val_type", type="string", length=255)
+     */
+    protected $val_type;
+
+    /** 
+     * @var string
+     * @ORM\Column(name="updated_at", type="date", length=255)
+     */
+    protected $updated_at;
+
+
+
+}
+

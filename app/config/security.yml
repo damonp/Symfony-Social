@@ -1,0 +1,62 @@
+security:
+    factories:
+        - "%kernel.root_dir%/../vendor/bundles/FOS/FacebookBundle/Resources/config/security_factories.xml"
+        - "%kernel.root_dir%/../vendor/bundles/FOS/TwitterBundle/Resources/config/security_factories.xml"
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+#        in_memory:
+#            users:
+#                user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+#                admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        my_fos_facebook_provider:
+            id: my.facebook.user  
+
+        fos_userbundle:
+            id: fos_user.user_manager
+
+        my_fos_twitter_provider:
+            id: fos_twitter.auth
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        fb_public:
+              pattern:  ^/ 
+              fos_facebook:
+                  login_path: /login
+                  check_path: /login_check
+                  default_target_path: /
+                  provider: my_fos_facebook_provider
+              anonymous: ~ 
+              logout:
+                  handlers: ["fos_facebook.logout_handler"]
+
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                post_only: false 
+            logout:       true
+            anonymous:    true
+
+#        public:
+#              pattern:   ^/
+#              anonymous: true
+#              fos_twitter: 
+#                  use_twitter_anywhere: true
+#              logout: true
+
+
+    access_control:
+        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+        #- { path: ^/secured/.*, role: [IS_AUTHENTICATED_FULLY] } # This is the route secured with fos_facebook
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
