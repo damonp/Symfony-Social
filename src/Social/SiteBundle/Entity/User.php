@@ -36,6 +36,18 @@ class User extends BaseUser
      */
     protected $facebookID;
 
+    /**
+     * @var string
+     * @ORM\Column(name="twitter_uid", type="string", length=255, nullable=true)
+     */
+    protected $twitterID;
+
+    /**
+     * @var string
+     * @ORM\Column(name="twitter_username", type="string", length=255, nullable=true)
+     */
+    protected $twitter_username;
+
 
     /**
      * Get id
@@ -136,5 +148,47 @@ class User extends BaseUser
     public function getFacebookID()
     {
         return $this->facebookID;
+    }
+
+    /**
+     * Set twitterID
+     *
+     * @param string $twitterID
+     */
+    public function setTwitterID($twitterID)
+    {
+        $this->twitterID = $twitterID;
+        $this->setUsername($twitterID);
+        $this->salt = '';
+    }
+
+    /**
+     * Get twitterID
+     *
+     * @return string 
+     */
+    public function getTwitterID()
+    {
+        return $this->twitterID;
+    }
+
+    /**
+     * Set twitter_username
+     *
+     * @param string $twitterUsername
+     */
+    public function setTwitterUsername($twitterUsername)
+    {
+        $this->twitter_username = $twitterUsername;
+    }
+
+    /**
+     * Get twitter_username
+     *
+     * @return string 
+     */
+    public function getTwitterUsername()
+    {
+        return $this->twitter_username;
     }
 }

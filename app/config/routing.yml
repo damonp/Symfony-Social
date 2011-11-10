@@ -32,6 +32,12 @@ _security_check:
 _security_logout:
     pattern:  /logout
 
+_fb_security_check:
+    pattern:  /facebook/login_check
+
+_twitter_security_check:
+    pattern:  /twitter/login_check
+
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin

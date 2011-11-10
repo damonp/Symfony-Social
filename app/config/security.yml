@@ -15,6 +15,9 @@ security:
 #            users:
 #                user:  { password: userpass, roles: [ 'ROLE_USER' ] }
 #                admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        chain_provider:
+            providers: [my_fos_facebook_provider, my_fos_twitter_provider]
+
         my_fos_facebook_provider:
             id: my.facebook.user  
 
@@ -22,23 +25,30 @@ security:
             id: fos_user.user_manager
 
         my_fos_twitter_provider:
-            id: fos_twitter.auth
+            id: my.twitter.user 
 
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        fb_public:
-              pattern:  ^/ 
-              fos_facebook:
-                  login_path: /login
-                  check_path: /login_check
-                  default_target_path: /
-                  provider: my_fos_facebook_provider
-              anonymous: ~ 
-              logout:
-                  handlers: ["fos_facebook.logout_handler"]
+        public:
+            pattern:  /
+            fos_facebook:
+                login_path: /facebook/login
+                check_path: /facebook/login_check
+                default_target_path: /
+                provider: my_fos_facebook_provider 
+            fos_twitter:
+                login_path: /twitter/login
+                check_path: /twitter/login_check
+                default_target_path: /
+                provider: my_fos_twitter_provider 
+
+            anonymous: ~ 
+            logout:
+                handlers: ["fos_facebook.logout_handler"]
+                delete_cookies: [oauth_token]
 
         main:
             pattern: ^/
@@ -47,13 +57,6 @@ security:
                 post_only: false 
             logout:       true
             anonymous:    true
-
-#        public:
-#              pattern:   ^/
-#              anonymous: true
-#              fos_twitter: 
-#                  use_twitter_anywhere: true
-#              logout: true
 
 
     access_control:

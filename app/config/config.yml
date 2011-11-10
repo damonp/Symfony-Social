@@ -76,7 +76,7 @@ fos_twitter:
     file: %kernel.root_dir%/../vendor/twitteroauth/twitteroauth/twitteroauth.php
     consumer_key: MRAXhACUuskeJs8E8FqJiA 
     consumer_secret: TkpEIc6BwV7C9CND6vo2fPt67rC9QI6gCfud9FlaeI 
-#    callback_url: http://symfony2social.com/login_check
+    callback_url: http://www.symfony2social.com/twitter/login_check
 
 services:
     my.facebook.user:
@@ -86,6 +86,21 @@ services:
             userManager: "@fos_user.user_manager"
             validator: "@validator"
             container: "@service_container"
+  
+    my.twitter.user:
+        class: Social\SiteBundle\Security\User\Provider\TwitterProvider
+        arguments:
+            twitter: "@fos_twitter.service"
+            twitter_oauth: "@fos_twitter.api"
+            userManager: "@fos_user.user_manager"
+            validator: "@validator"
+            container: "@service_container"        
+
+#    ajax_success_handler:
+#         class: Social\SiteBundle\Security\Authentication\AjaxSuccessHandler
+#         arguments:   
+#            response: 
+ 
 
     sonata.social.admin.config:
           class: Social\SiteBundle\Admin\ConfigAdmin

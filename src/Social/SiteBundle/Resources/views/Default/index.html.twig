@@ -7,7 +7,7 @@
 
         <script>
           function goLogIn(){
-              window.location = "{{ path('_security_check') }}";
+              window.location = "{{ path('_fb_security_check') }}";
           }
 
           function onFbInit() {
@@ -23,16 +23,23 @@
           }
         </script>
 
-    <h1>Welcome!</h1>
+    <h1>Welcome {% if is_granted('IS_AUTHENTICATED_FULLY') %} {{app.user.firstname}} {% endif %}!</h1>
 
-    <p>Click to login.</p>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p><a href="{{ path('_security_logout')}}">Click to logout</a> </p>
+    {% endif %}
+
+    <p>Click to login with Facebook.</p>
 
       {{ facebook_login_button({'autologoutlink': true}) }}
 
-    <p>Click to login with Twitter</p>
+    <p>Click to login with Twitter.</p>
 
-      <span id="twitter_connect"></span>
-      {# twitter_anywhere_setConfig('callbackURL', 'http://symfony2social.com/login_check') #}
-      {{ twitter_anywhere_queue('T("#twitter_connect").connectButton()') }}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+     <a href="{{ path('_security_logout')}}"><img src="/images/twitterLogOutButton.png"></a>
+    {% else %}
+     <a href="{{ path ('connect_twitter')}}"> <img src="/images/twitterLoginButton.png"></a>  
+    {% endif %}    
+ 
 
 {% endblock %}
