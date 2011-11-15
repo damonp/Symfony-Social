@@ -1,5 +1,5 @@
 <?php
-namespace Social\SiteBundle\Admin;
+namespace App\SecurityBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -9,7 +9,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 use Knp\Menu\ItemInterface as MenuItemInterface;
 
-use Application\Social\SiteBundle\Entity\Config;
+use Application\App\SecurityBundle\Entity\Config;
 
 class ConfigAdmin extends Admin
 {

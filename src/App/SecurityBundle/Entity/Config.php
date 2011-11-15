@@ -1,6 +1,6 @@
 <?php
 
-namespace Social\SiteBundle\Entity;
+namespace App\SecurityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,34 +8,34 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="config_local")
  */
-class Config 
+class Config
 {
-    /** 
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
-    /** 
+    /**
      * @var string
      * @ORM\Column(name="conf_key", type="string", length=50)
      */
     protected $key;
 
-    /** 
+    /**
      * @var string
      * @ORM\Column(name="conf_val", type="string", length=255)
      */
     protected $val;
 
-    /** 
+    /**
      * @var string
      * @ORM\Column(name="conf_val_type", type="string", length=255)
      */
     protected $val_type;
 
-    /** 
+    /**
      * @var string
      * @ORM\Column(name="updated_at", type="datetime")
      */
@@ -47,7 +47,7 @@ class Config
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -67,7 +67,7 @@ class Config
     /**
      * Get key
      *
-     * @return string 
+     * @return string
      */
     public function getKey()
     {
@@ -87,7 +87,7 @@ class Config
     /**
      * Get val
      *
-     * @return string 
+     * @return string
      */
     public function getVal()
     {
@@ -107,7 +107,7 @@ class Config
     /**
      * Get val_type
      *
-     * @return string 
+     * @return string
      */
     public function getValType()
     {
@@ -127,7 +127,7 @@ class Config
     /**
      * Get updated_at
      *
-     * @return date 
+     * @return date
      */
     public function getUpdatedAt()
     {

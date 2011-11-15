@@ -1,6 +1,6 @@
 <?php
 
-namespace Social\SiteBundle\Controller;
+namespace App\SecurityBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,7 +15,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
- 
+
       //$sess = $this->get( 'session' );
 
        //$tweet = $this->get('fos_twitter.api');
@@ -49,26 +49,26 @@ class DefaultController extends Controller
 
     }
 
-    /** 
+    /**
     * @Route("/facebook", name="facebook")
     *
     */
     public function facebookAction()
-    {   
+    {
 
-        return $this->render('SocialSiteBundle:Default:index.html.twig');
-    } 
+        return $this->render('AppSecurityBundle:Default:index.html.twig');
+    }
 
 
-    /** 
+    /**
     * @Route("/twitter", name="twitter")
     *
     */
     public function twitterAction()
-    {   
+    {
 
-        return $this->render('SocialSiteBundle:Default:index.html.twig');
-    }  
+        return $this->render('AppSecurityBundle:Default:index.html.twig');
+    }
 
 
 }

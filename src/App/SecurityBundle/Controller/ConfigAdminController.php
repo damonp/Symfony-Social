@@ -1,5 +1,5 @@
 <?php
-namespace Social\SiteBundle\Controller;
+namespace App\SecurityBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 

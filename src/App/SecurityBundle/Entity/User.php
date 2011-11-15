@@ -1,6 +1,6 @@
 <?php
 
-namespace Social\SiteBundle\Entity;
+namespace App\SecurityBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -52,7 +52,7 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -72,7 +72,7 @@ class User extends BaseUser
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -92,7 +92,7 @@ class User extends BaseUser
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -143,7 +143,7 @@ class User extends BaseUser
     /**
      * Get facebookID
      *
-     * @return string 
+     * @return string
      */
     public function getFacebookID()
     {
@@ -165,7 +165,7 @@ class User extends BaseUser
     /**
      * Get twitterID
      *
-     * @return string 
+     * @return string
      */
     public function getTwitterID()
     {
@@ -185,7 +185,7 @@ class User extends BaseUser
     /**
      * Get twitter_username
      *
-     * @return string 
+     * @return string
      */
     public function getTwitterUsername()
     {

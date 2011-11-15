@@ -1,6 +1,6 @@
 <?php
 
-namespace Social\SiteBundle\Security\User\Provider;
+namespace App\SecurityBundle\Security\User\Provider;
 
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -52,7 +52,7 @@ class TwitterProvider implements UserProviderInterface
 
          $request = $this->container->get('request');
          $session = $request->getSession();
-       
+
 
          $this->twitter_oauth->setOAuthToken( $session->get('access_token') , $session->get('access_token_secret'));
 
@@ -61,7 +61,7 @@ class TwitterProvider implements UserProviderInterface
         } catch (Exception $e) {
              $info = null;
         }
-      
+
         if (!empty($info)) {
             if (empty($user)) {
                 $user = $this->userManager->createUser();
@@ -72,7 +72,7 @@ class TwitterProvider implements UserProviderInterface
 
             $username = $info->screen_name;
 
-            
+
             $user->setTwitterID($info->id);
             $user->setTwitterUsername($username);
             $user->setEmail('');
@@ -86,7 +86,7 @@ class TwitterProvider implements UserProviderInterface
         }
 
         return $user;
-         
+
     }
 
     public function refreshUser(UserInterface $user)

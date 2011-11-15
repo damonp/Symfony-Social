@@ -6,11 +6,11 @@
 
     <!--
     <parameters>
-        <parameter key="social_site.example.class">Social\SiteBundle\Example</parameter>
+        <parameter key="App_site.example.class">App\SecurityBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="social_site.example" class="%social_site.example.class%">
+        <service id="App_site.example" class="%App_site.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

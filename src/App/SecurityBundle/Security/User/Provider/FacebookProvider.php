@@ -1,6 +1,6 @@
 <?php
 
-namespace Social\SiteBundle\Security\User\Provider;
+namespace App\SecurityBundle\Security\User\Provider;
 
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;

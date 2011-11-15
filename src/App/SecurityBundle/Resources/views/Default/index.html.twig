@@ -1,4 +1,4 @@
-{% extends 'SocialSiteBundle::layout.html.twig' %}
+{% extends 'AppSecurityBundle::layout.html.twig' %}
 
 
 {% block content %}
@@ -36,10 +36,10 @@
     <p>Click to login with Twitter.</p>
 
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-     <a href="{{ path('_security_logout')}}"><img src="/images/twitterLogOutButton.png"></a>
+     <a href="{{ path('_security_logout')}}"><img src="images/twitterLogOutButton.png"></a>
     {% else %}
-     <a href="{{ path ('connect_twitter')}}"> <img src="/images/twitterLoginButton.png"></a>  
-    {% endif %}    
- 
+     <a href="{{ path ('connect_twitter')}}"> <img src="images/twitterLoginButton.png"></a>
+    {% endif %}
+
 
 {% endblock %}
