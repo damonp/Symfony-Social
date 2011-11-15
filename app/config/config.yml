@@ -62,49 +62,49 @@ jms_security_extra:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb'
     firewall_name: main
-    user_class: Social\SiteBundle\Entity\User
+    user_class: App\SecurityBundle\Entity\User
 
 fos_facebook:
     file:   %kernel.root_dir%/../vendor/facebook/src/base_facebook.php
     alias:  facebook
-    app_id: 268931159818428 
-    secret: 6d165f2df2bbac0924dd5e8032867d61 
+    app_id: YOUR-APP-ID
+    secret: YOUR-APP-SECRET
     cookie: true
     permissions: [email, user_birthday, user_location]
 
 fos_twitter:
     file: %kernel.root_dir%/../vendor/twitteroauth/twitteroauth/twitteroauth.php
-    consumer_key: MRAXhACUuskeJs8E8FqJiA 
-    consumer_secret: TkpEIc6BwV7C9CND6vo2fPt67rC9QI6gCfud9FlaeI 
-    callback_url: http://www.symfony2social.com/twitter/login_check
+    consumer_key: YOUR-CONSUMER-KEY
+    consumer_secret: YOUR-CONSUMER-SECRET
+    callback_url: http://www.queueitapp.com/twitter/login_check
 
 services:
     my.facebook.user:
-        class: Social\SiteBundle\Security\User\Provider\FacebookProvider
+        class: App\SecurityBundle\Security\User\Provider\FacebookProvider
         arguments:
             facebook: "@fos_facebook.api"
             userManager: "@fos_user.user_manager"
             validator: "@validator"
             container: "@service_container"
-  
+
     my.twitter.user:
-        class: Social\SiteBundle\Security\User\Provider\TwitterProvider
+        class: App\SecurityBundle\Security\User\Provider\TwitterProvider
         arguments:
             twitter: "@fos_twitter.service"
             twitter_oauth: "@fos_twitter.api"
             userManager: "@fos_user.user_manager"
             validator: "@validator"
-            container: "@service_container"        
+            container: "@service_container"
 
 #    ajax_success_handler:
-#         class: Social\SiteBundle\Security\Authentication\AjaxSuccessHandler
-#         arguments:   
-#            response: 
- 
+#         class: App\SecurityBundle\Security\Authentication\AjaxSuccessHandler
+#         arguments:
+#            response:
+
 
     sonata.social.admin.config:
-          class: Social\SiteBundle\Admin\ConfigAdmin
+          class: App\SecurityBundle\Admin\ConfigAdmin
           tags:
             - { name: sonata.admin, manager_type: orm, group: social_config, label: config }
-          arguments: [null, Social\SiteBundle\Entity\Config, SocialSiteBundle:ConfigAdmin]
+          arguments: [null, App\SecurityBundle\Entity\Config, AppSecurityBundle:ConfigAdmin]
 
