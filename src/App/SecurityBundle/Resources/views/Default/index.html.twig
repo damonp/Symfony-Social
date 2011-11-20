@@ -10,7 +10,7 @@
 	<div id="welcomebar" style="">
 	  <div id="userbar-welcome" style=""><b>Welcome {{app.user.firstname}}</b></div>
   	<div id="userbar-menu" style="">
-		  <a href="{{ path('_security_logout')}}">Logout</a>
+		  <a href="{{ path('_security_logout')}}" class="button logout">Logout</a>
 	  </div>
 	  <div style="clear:both"></div>
 	</div>
@@ -30,6 +30,8 @@
 		<input type="submit" id="_submit" name="_submit" value="Login" />
 	</div>
 	</form>
+
+	<div id="registerbar"><a href="./register" class="button logout">Register</a></div>
 
 	<div id="facebookbar" style="">
 {{ facebook_initialize({'xfbml': true, 'status': true,'fbAsyncInit': 'onFbInit();'}) }}
@@ -58,9 +60,9 @@
 
 	<div id="twitterbar" style="">
 	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-	 <a href="{{ path('_security_logout')}}"><img src="/images/twitterLogOutButton.png"></a>
+	 <a onclick="loginWindow('{{ path('_security_logout')}}');return false;" alt="Login with Twitter" href="#zzz"><img src="/images/twitterLogOutButton.png"></a>
 	{% else %}
-	 <a href="{{ path ('connect_twitter')}}"> <img src="/images/twitterLoginButton.png"></a>
+	 <a onclick="loginWindow('{{ path ('connect_twitter')}}');return false;" alt="Logout with Twitter"  href="#zzz"> <img src="/images/twitterLoginButton.png"></a>
 	{% endif %}
   &nbsp;
 	</div>

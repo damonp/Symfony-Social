@@ -14,8 +14,8 @@ ul	li	ul li	{	padding: 1px 0 1px 0;	}
 label	{	font-weight:bold;	}
 
 
-#userbar, #userbar-welcome, #userbar-menu, #loginbar, #facebookbar, #twitterbar
-{	float:left;clear:none;	}
+#userbar, #userbar-welcome, #userbar-menu, #loginbar, #facebookbar, #twitterbar, #registerbar
+{	float:left;clear:none;padding: 5px;	}
 
 #userbar	{
 width:90%;height:40px;vertical-align:middle;text-align:center;
@@ -50,3 +50,6 @@ width:200px;
 
 }
 
+#registerbar	{
+
+}
