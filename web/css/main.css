@@ -1,4 +1,4 @@
-body    		{	font: Verdana 14px; text-align: center; background-color: #eee;	}
+body    		{	font: Verdana 14px; text-align: center; background-color: #eee;padding:0;margin:0;text-align:center;	}
 a, a:visited    {	color: blue; text-decoration: none;	}
 a:hover 		{	color: #999;	}
 div#main		{	margin: 10px auto; padding: 8px; width: 600px; text-align: left; border: 1px solid #bbb; background-color: #fff;	}
@@ -11,16 +11,27 @@ pre 			{	margin: 6px; font-family: monospace;	}
 li      		{	padding: 3px 0 3px 0;	}
 h4				{	padding: 0;	margin: 0;	}
 ul	li	ul li	{	padding: 1px 0 1px 0;	}
-label	{	font-weight:bold;	}
+label	{	font-weight:bold;font-size:.9em;	}
+p, div	{	text-align:left;	}
 
 
-#userbar, #userbar-welcome, #userbar-menu, #loginbar, #facebookbar, #twitterbar, #registerbar
-{	float:left;clear:none;padding: 5px;	}
+#userbar-welcome, #userbar-menu, #loginbar, #facebookbar, #twitterbar, #registerbar
+{	float:left;clear:none;padding: 5px 10px;margin: 0px auto;text-align:center;	}
 
+#topbar	{
+width:100%;height;36px;
+background:#fff;
+text-align:center;vertical-align:middle;margin: 0px auto;
+border:1px solid black;
+}
 #userbar	{
-width:90%;height:40px;vertical-align:middle;text-align:center;
-border:1px solid black;background:#fff;padding:8px 20px 0 20px;
-white-space:nowrap;
+float:left;
+vertical-align:middle;text-align:left;
+/* border:1px solid black; */
+min-width: 950px;
+/*margin: 0 auto;*/
+margin:0 10% 0 10%;
+padding:8px 25px 0 25px;
 }
 #userbar-welcome	{
 width:300px;
@@ -39,11 +50,11 @@ width:600px;
 }
 
 #facebookbar	{
-width:100px;
+width:75px;
 }
 
 #twitterbar	{
-width:200px;
+width:75px;
 }
 
 #welcomebar	{
@@ -51,5 +62,5 @@ width:200px;
 }
 
 #registerbar	{
-
+width:100px;
 }

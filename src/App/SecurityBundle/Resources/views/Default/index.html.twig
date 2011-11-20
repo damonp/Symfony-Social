@@ -3,16 +3,14 @@
 
 {% block content %}
 
-<center>
+<div id="topbar" style="">
 <div id="userbar" style="">
-	<div style="width:10%;float:left;clear:none;">&nbsp;</div>
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 	<div id="welcomebar" style="">
 	  <div id="userbar-welcome" style=""><b>Welcome {{app.user.firstname}}</b></div>
   	<div id="userbar-menu" style="">
 		  <a href="{{ path('_security_logout')}}" class="button logout">Logout</a>
 	  </div>
-	  <div style="clear:both"></div>
 	</div>
 {% else %}
 
@@ -25,7 +23,7 @@
 		<input type="password" id="password" name="_password" size="16" />
 
 		<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-		<label for="remember_me">Remember me</label>
+		<label for="remember_me">Remember?</label>
 
 		<input type="submit" id="_submit" name="_submit" value="Login" />
 	</div>
@@ -60,16 +58,17 @@
 
 	<div id="twitterbar" style="">
 	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-	 <a onclick="loginWindow('{{ path('_security_logout')}}');return false;" alt="Login with Twitter" href="#zzz"><img src="/images/twitterLogOutButton.png"></a>
+	 <a onclick="loginWindow('{{ path('_security_logout')}}');return false;" alt="Logout with Twitter" href="#zzz"><img src="/images/twitterLogOutButton.png"></a>
 	{% else %}
-	 <a onclick="loginWindow('{{ path ('connect_twitter')}}');return false;" alt="Logout with Twitter"  href="#zzz"> <img src="/images/twitterLoginButton.png"></a>
+	 <a onclick="loginWindow('{{ path ('connect_twitter')}}');return false;" alt="Login with Twitter"  href="#zzz"> <img src="/images/login_tw.jpg"></a>
 	{% endif %}
   &nbsp;
 	</div>
 {% endif %}
 
-<div style="float:left;clear:both;width:10%">&nbsp;</div>
 </div>
-</center>
+
+<div class="spacer" style="clear:both;"></div>
+</div>
 
 {% endblock %}
