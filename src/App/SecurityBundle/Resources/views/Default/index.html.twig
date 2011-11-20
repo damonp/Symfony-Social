@@ -3,43 +3,71 @@
 
 {% block content %}
 
-      {{ facebook_initialize({'xfbml': true, 'status': true,'fbAsyncInit': 'onFbInit();'}) }}
+<center>
+<div id="userbar" style="">
+	<div style="width:10%;float:left;clear:none;">&nbsp;</div>
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	<div id="welcomebar" style="">
+	  <div id="userbar-welcome" style=""><b>Welcome {{app.user.firstname}}</b></div>
+  	<div id="userbar-menu" style="">
+		  <a href="{{ path('_security_logout')}}">Logout</a>
+	  </div>
+	  <div style="clear:both"></div>
+	</div>
+{% else %}
 
-        <script>
-          function goLogIn(){
-              window.location = "{{ path('_fb_security_check') }}";
-          }
+	<form action="/app_dev.php/login_check" method="post">
+	<div id="loginbar" style="">
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="_username" value="" size="16" />
 
-          function onFbInit() {
-             if (typeof(FB) != 'undefined' && FB != null ) {
-                  FB.Event.subscribe('auth.login', function(response) {
-                       setTimeout(goLogIn,500);
-                  });
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="_password" size="16" />
 
-                  FB.Event.subscribe('auth.logout', function(response) {
-                       window.location = "{{ path('_security_logout') }}";
-                  });
-             }
-          }
-        </script>
+		<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+		<label for="remember_me">Remember me</label>
 
-    <h1>Welcome {% if is_granted('IS_AUTHENTICATED_FULLY') %} {{app.user.firstname}} {% endif %}!</h1>
+		<input type="submit" id="_submit" name="_submit" value="Login" />
+	</div>
+	</form>
 
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    <p><a href="{{ path('_security_logout')}}">Click to logout</a> </p>
-    {% endif %}
+	<div id="facebookbar" style="">
+{{ facebook_initialize({'xfbml': true, 'status': true,'fbAsyncInit': 'onFbInit();'}) }}
 
-    <p>Click to login with Facebook.</p>
+	<script>
+		function goLogIn(){
+				window.location = "{{ path('_fb_security_check') }}";
+		}
 
-      {{ facebook_login_button({'autologoutlink': true}) }}
+		function onFbInit() {
+			 if (typeof(FB) != 'undefined' && FB != null ) {
+						FB.Event.subscribe('auth.login', function(response) {
+								 setTimeout(goLogIn,500);
+						});
 
-    <p>Click to login with Twitter.</p>
+						FB.Event.subscribe('auth.logout', function(response) {
+								 window.location = "{{ path('_security_logout') }}";
+						});
+			 }
+		}
+	</script>
 
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-     <a href="{{ path('_security_logout')}}"><img src="images/twitterLogOutButton.png"></a>
-    {% else %}
-     <a href="{{ path ('connect_twitter')}}"> <img src="/images/twitterLoginButton.png"></a>
-    {% endif %}
+  {{ facebook_login_button({'autologoutlink': true}) }}
+  &nbsp;
+	</div>
 
+	<div id="twitterbar" style="">
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	 <a href="{{ path('_security_logout')}}"><img src="/images/twitterLogOutButton.png"></a>
+	{% else %}
+	 <a href="{{ path ('connect_twitter')}}"> <img src="/images/twitterLoginButton.png"></a>
+	{% endif %}
+  &nbsp;
+	</div>
+{% endif %}
+
+<div style="float:left;clear:both;width:10%">&nbsp;</div>
+</div>
+</center>
 
 {% endblock %}

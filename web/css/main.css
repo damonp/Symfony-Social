@@ -1,0 +1,52 @@
+body    		{	font: Verdana 14px; text-align: center; background-color: #eee;	}
+a, a:visited    {	color: blue; text-decoration: none;	}
+a:hover 		{	color: #999;	}
+div#main		{	margin: 10px auto; padding: 8px; width: 600px; text-align: left; border: 1px solid #bbb; background-color: #fff;	}
+div.output  	{	margin: 10px 0 5px 0;	}
+.bad    		{	font-weight: bold; color: red;	}
+.good  	 		{	font-weight: bold; color: green;	}
+pre 			{	margin: 6px; font-family: monospace;	}
+.footer 		{	text-align: center; color: #888;	}
+.footer a		{	color: #666;	}
+li      		{	padding: 3px 0 3px 0;	}
+h4				{	padding: 0;	margin: 0;	}
+ul	li	ul li	{	padding: 1px 0 1px 0;	}
+label	{	font-weight:bold;	}
+
+
+#userbar, #userbar-welcome, #userbar-menu, #loginbar, #facebookbar, #twitterbar
+{	float:left;clear:none;	}
+
+#userbar	{
+width:90%;height:40px;vertical-align:middle;text-align:center;
+border:1px solid black;background:#fff;padding:8px 20px 0 20px;
+white-space:nowrap;
+}
+#userbar-welcome	{
+width:300px;
+text-align:left;
+padding: 0 10px;
+}
+
+#userbar-menu	{
+width:600px;
+text-align: left;
+padding: 0 10px;
+}
+
+#loginbar	{
+width:600px;
+}
+
+#facebookbar	{
+width:100px;
+}
+
+#twitterbar	{
+width:200px;
+}
+
+#welcomebar	{
+
+}
+

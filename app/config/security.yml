@@ -18,16 +18,26 @@ security:
         chain_provider:
             providers: [my_fos_facebook_provider, my_fos_twitter_provider]
 
-        my_fos_facebook_provider:
-            id: my.facebook.user  
-
         fos_userbundle:
             id: fos_user.user_manager
 
+        my_fos_facebook_provider:
+            id: my.facebook.user
+
         my_fos_twitter_provider:
-            id: my.twitter.user 
+            id: my.twitter.user
 
     firewalls:
+        main:
+            pattern: .*
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                provider: fos_userbundle
+                post_only: false
+            logout:       true
+            anonymous:    true
+
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -38,25 +48,17 @@ security:
                 login_path: /facebook/login
                 check_path: /facebook/login_check
                 default_target_path: /
-                provider: my_fos_facebook_provider 
+                provider: my_fos_facebook_provider
             fos_twitter:
                 login_path: /twitter/login
                 check_path: /twitter/login_check
                 default_target_path: /
-                provider: my_fos_twitter_provider 
+                provider: my_fos_twitter_provider
 
-            anonymous: ~ 
+            anonymous: ~
             logout:
                 handlers: ["fos_facebook.logout_handler"]
                 delete_cookies: [oauth_token]
-
-        main:
-            pattern: ^/
-            form_login:
-                provider: fos_userbundle
-                post_only: false 
-            logout:       true
-            anonymous:    true
 
 
     access_control:
