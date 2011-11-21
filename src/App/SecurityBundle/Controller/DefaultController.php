@@ -50,6 +50,25 @@ class DefaultController extends Controller
     }
 
     /**
+    * @Route("/twitter/login_check", name="connect_twitter")
+    *
+    */
+    public function twitterLoginCheckAction()
+    {
+
+      $request = $this->get('request');
+      $twitter = $this->get('fos_twitter.service');
+
+      $authURL = $twitter->getLoginUrl($request);
+
+      $response = new RedirectResponse($authURL);
+
+      return $response;
+
+    }
+
+
+    /**
     * @Route("/facebook", name="facebook")
     *
     */

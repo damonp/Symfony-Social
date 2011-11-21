@@ -14,7 +14,8 @@ function loginWindow(loginURL)  {
           'width=' + width +
           ',height=' + height +
           ',left=' + left +
-          ',top=' + top
+          ',top=' + top +
+          ',status=1,scrollbars=1'
           );
 
   newwindow=window.open(loginURL, 'Login', features);

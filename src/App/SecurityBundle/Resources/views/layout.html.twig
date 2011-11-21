@@ -34,7 +34,7 @@
 	</div>
 	</form>
 
-	<div id="registerbar"><a href="./register" class="button logout">Register</a></div>
+	<div id="registerbar"><a href="{{ path('fos_user_registration_register')}}" class="button logout">Register</a></div>
 
 	<div id="facebookbar" style="">
 {{ facebook_initialize({'xfbml': true, 'status': true,'fbAsyncInit': 'onFbInit();'}) }}
