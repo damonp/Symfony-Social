@@ -101,10 +101,14 @@ services:
 #         arguments:
 #            response:
 
+    twig.extension.txt:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
 
     sonata.social.admin.config:
-          class: App\SecurityBundle\Admin\ConfigAdmin
-          tags:
-            - { name: sonata.admin, manager_type: orm, group: social_config, label: config }
-          arguments: [null, App\SecurityBundle\Entity\Config, AppSecurityBundle:ConfigAdmin]
+        class: App\SecurityBundle\Admin\ConfigAdmin
+        tags:
+          - { name: sonata.admin, manager_type: orm, group: social_config, label: config }
+        arguments: [null, App\SecurityBundle\Entity\Config, AppSecurityBundle:ConfigAdmin]
 

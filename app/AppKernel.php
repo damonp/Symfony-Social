@@ -17,7 +17,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new App\SecurityBundle\AppSecurityBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\FacebookBundle\FOSFacebookBundle(),
             new FOS\TwitterBundle\FOSTwitterBundle(),
@@ -25,6 +24,9 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+
+            new App\SecurityBundle\AppSecurityBundle(),
+            new App\AdminBundle\AppAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

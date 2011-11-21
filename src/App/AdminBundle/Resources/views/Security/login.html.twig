@@ -1,0 +1,36 @@
+{% extends '::base.admin.html.twig' %}
+
+{% block logged_in %}
+<li><a href="{{ path('index') }}">Public</a></li>
+{% endblock %}
+
+{% block content %}
+    {% if error %}
+        <div class="error">{{ error.message }}</div>
+    {% endif %}
+
+		<center>
+		<div id="form_login" style="width:90%;text-align:center;padding:5em 0 0 0;"">
+		<fieldset style="width:300px;">
+		<legend>Login</legend>
+    <form action="{{ path("_admin_check") }}" method="post" id="login">
+        <div style="padding:.5em;">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" style="width:100px;" />
+        </div>
+
+        <div style="padding:.5em;">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="_password" style="width:100px;" />
+        </div>
+
+        <input type="submit" class="symfony-button-grey" value="LOGIN" style="margin:2em 0 0 13em;" />
+    </form>
+    </fieldset>
+    </div>
+    </center>
+{% endblock %}
+
+{#
+{% set code = code(_self) %}
+#}

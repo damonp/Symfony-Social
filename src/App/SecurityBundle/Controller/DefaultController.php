@@ -50,10 +50,10 @@ class DefaultController extends Controller
     }
 
     /**
-    * @Route("/twitter/login_check", name="connect_twitter")
+    * @Route("/twitter/oauth", name="connect_twitter")
     *
     */
-    public function twitterLoginCheckAction()
+    public function twitterOAuthAction()
     {
 
       $request = $this->get('request');

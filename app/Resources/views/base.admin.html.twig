@@ -2,9 +2,9 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>{% block title %}QueueitApp.com{% endblock %}</title>
+	<title>{% block title %}QueueitApp Admin{% endblock %}</title>
 	{% block stylesheets %}
-	<link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet" />
+	<link href="{{ asset('css/admin.css') }}" type="text/css" rel="stylesheet" />
 	<style>
 	#main	{	height:400px;width:975px;	}
 	</style>
@@ -17,12 +17,14 @@
 	<div id="qbar">
 		{% block qbar_menu %}
 		<ul>
-			<li><a href="{{ path('index') }}">Home</a></li>
-			<li><a href="{{ path('admin_index') }}">Admin</a></li>
-			<li><a href="./queue">Queue</a></li>
-			<li><a href="./about">About</a></li>
-			<li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
-			<li><a href="{{ path('_security_check') }}">Login</a></li>
+			{% block logged_in %}
+			<li><a href="{{ path('admin_index') }}""">Admin</a></li>
+			<li><a href="{{ path('index') }}">Public</a></li>
+			<li><a href="{{ path('admin_content') }}">Content</a></li>
+			<li><a href="{{ path('admin_queue') }}">Queue</a></li>
+			<li><a href="{{ path('admin_users') }}">Users</a></li>
+			<li><a href="{{ path('_admin_logout') }}">Logout</a></li>
+			{% endblock %}
 		</ul>
 		{% endblock %}
 		{% block qbar %}
@@ -44,8 +46,5 @@
 	{% block javascripts %}
 	 <script src="{{ asset('/js/main.js') }}" type="text/javascript"></script>
 	{% endblock %}
-	<div id="footer" style="">
-	footer
-	</div>
 </body>
 </html>

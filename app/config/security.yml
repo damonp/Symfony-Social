@@ -4,19 +4,25 @@ security:
         - "%kernel.root_dir%/../vendor/bundles/FOS/TwitterBundle/Resources/config/security_factories.xml"
 
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+#        Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User:
+            algorithm:   sha1
+            iterations: 1
+            encode_as_base64: false
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-#        in_memory:
-#            users:
-#                user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-#                admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        in_memory:
+            users:
+                damonp: { password: f627555b50c305f5050915e1ac411b9569469ff3, roles: [ 'ROLE_SUPER_ADMIN' ] }
+                admin: { password: b614dc1ce8413ff6cf4db192c5b62e6a86090846, roles: [ 'ROLE_SUPER_ADMIN' ] }
+                # admin / passw0rd22
+
         chain_provider:
-            providers: [my_fos_facebook_provider, my_fos_twitter_provider]
+            providers: [fos_userbundle, my_fos_facebook_provider, my_fos_twitter_provider]
 
         fos_userbundle:
             id: fos_user.user_manager
@@ -28,6 +34,25 @@ security:
             id: my.twitter.user
 
     firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin_login:
+            pattern:  ^/admin/login$
+            security: false
+
+        admin:
+            pattern:    ^/admin/
+            form_login:
+                login_path: /admin/login
+                check_path: /admin/login_check
+                default_target_path: /admin/dashboard
+                use_referer: false
+            logout:
+                path:   /admin/logout
+                target: /
+
         main:
             pattern: .*
             form_login:
@@ -37,10 +62,6 @@ security:
                 post_only: false
             logout:       true
             anonymous:    true
-
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
 
         public:
             pattern:  /
@@ -71,6 +92,3 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
 
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN

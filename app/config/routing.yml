@@ -1,8 +1,18 @@
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #   prefix:   /_internal
 #
+
+index_slug:
+    pattern: /{slug}
+    defaults: { _controller: AppAdminBundle:Content:slug }
+
+index:
+    pattern: /
+    defaults: { _controller: AppAdminBundle:Content:slug }
+
 AppSecurityBundle:
     resource: "@AppSecurityBundle/Controller/"
     type:     annotation
@@ -37,6 +47,30 @@ _fb_security_check:
 
 _twitter_security_check:
     pattern:  /twitter/login_check
+
+_twitter_oauth:
+    pattern:  /twitter/oauth
+
+_admin_login:
+    pattern:  /admin/login
+    defaults: { _controller: AppAdminBundle:Security:login }
+
+_admin_check:
+    pattern:  /admin/login_check
+    defaults: { _controller: AppAdminBundle:Security:login_check }
+
+_admin_logout:
+    pattern:  /admin/logout
+    defaults: { _controller: AppAdminBundle:Security:logout }
+
+admin_index:
+    pattern:  /admin/dashboard
+    defaults: { _controller: SonataAdminBundle:Core:dashboard }
+
+AppAdminBundle:
+    resource: "@AppAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
