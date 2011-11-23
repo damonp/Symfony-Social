@@ -1,5 +1,5 @@
 {% extends '::base.html.twig' %}
 
 {% block content %}
-{{ content | nl2br }}
+{{ content | raw | nl2br }}
 {% endblock %}
