@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * App\AdminBundle\Entity\Content
  *
- * @ORM\Table()
+ * @ORM\Table(name="content")
  * @ORM\Entity(repositoryClass="App\AdminBundle\Entity\ContentRepository")
  */
 class Content

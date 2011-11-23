@@ -13,6 +13,75 @@
 
 </head>
 <body>
+
+<div id="topbar" style="">
+<div id="userbar" style="">
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	<div id="welcomebar" style="">
+	  <div id="userbar-welcome" style=""><b>Welcome {{app.user.firstname}}</b></div>
+  	<div id="userbar-menu" style="">
+		  <a href="{{ path('_security_logout')}}" class="button logout">Logout</a>
+	  </div>
+	</div>
+{% else %}
+
+	<form action="/app_dev.php/login_check" method="post">
+	<div id="loginbar" style="">
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="_username" value="" size="16" />
+
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="_password" size="16" />
+
+		<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+		<label for="remember_me">Remember?</label>
+
+		<input type="submit" id="_submit" name="_submit" value="Login" />
+	</div>
+	</form>
+
+	<div id="registerbar"><a href="{{ path('fos_user_registration_register')}}" class="button logout">Register</a></div>
+
+	<div id="facebookbar" style="">
+{{ facebook_initialize({'xfbml': true, 'status': true,'fbAsyncInit': 'onFbInit();'}) }}
+
+	<script>
+		function goLogIn(){
+				window.location = "{{ path('_fb_security_check') }}";
+		}
+
+		function onFbInit() {
+			 if (typeof(FB) != 'undefined' && FB != null ) {
+						FB.Event.subscribe('auth.login', function(response) {
+								 setTimeout(goLogIn,500);
+						});
+
+						FB.Event.subscribe('auth.logout', function(response) {
+								 window.location = "{{ path('_security_logout') }}";
+						});
+			 }
+		}
+	</script>
+
+  {{ facebook_login_button({'autologoutlink': true}) }}
+  &nbsp;
+	</div>
+
+	<div id="twitterbar" style="">
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	 <a onclick="loginWindow('{{ path('_security_logout')}}');return false;" alt="Logout with Twitter" href="#zzz"><img src="/images/twitterLogOutButton.png"></a>
+	{% else %}
+	 <a onclick="loginWindow('{{ path ('connect_twitter')}}');return false;" alt="Login with Twitter"  href="#zzz"> <img src="/images/login_tw.jpg"></a>
+	{% endif %}
+  &nbsp;
+	</div>
+{% endif %}
+
+</div>
+
+<div class="spacer" style="clear:both;"></div>
+</div>
+
 	<div id="main">
 	<div id="qbar">
 		{% block qbar_menu %}
