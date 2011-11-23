@@ -9,6 +9,8 @@ div.output  	{	margin: 10px 0 5px 0;	}
 pre 			{	margin: 6px; font-family: monospace;	}
 .footer 		{	text-align: center; color: #888;	}
 .footer a		{	color: #666;	}
+#footer		{	width:100%;text-align:center;color:#888;padding: 8px;border: 1px solid #bbb; background-color: #fff;	}
+
 li      		{	padding: 3px 0 3px 0;	}
 h4				{	padding: 0;	margin: 0;	}
 ul	li	ul li	{	padding: 1px 0 1px 0;	}
